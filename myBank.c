@@ -35,29 +35,33 @@ float checkBalance(int account_num){
       return balance_account;
     }
   }
-  return 0;
+  return -1;
 }
 float depositCash(int account_num, float amount){
-  amount = towDigit(amount);
-  for(int i = 0; i < Num_Of_Accounts; i++){
-    if (accounts[i][account_number] == account_num){
-      accounts[i][account_cash] += amount;
-      balance_account = accounts[i][account_cash];
-      return balance_account;
+  if(amount > 0){
+    amount = towDigit(amount);
+    for(int i = 0; i < Num_Of_Accounts; i++){
+      if (accounts[i][account_number] == account_num){
+        accounts[i][account_cash] += amount;
+        balance_account = accounts[i][account_cash];
+        return balance_account;
+      }
     }
   }
   return 0;
 }
 float withdrawCash(int account_num, float amount){
-  amount = towDigit(amount);
-  for(int i = 0; i < Num_Of_Accounts; i++){
-    if((accounts[i][account_number] == account_num) && (accounts[i][account_cash] > amount)){
-      accounts[i][account_cash] -= amount;
-      balance_account = accounts[i][account_cash];
-      return balance_account;
+  if(amount > 0){
+    amount = towDigit(amount);
+    for(int i = 0; i < Num_Of_Accounts; i++){
+      if((accounts[i][account_number] == account_num) && (accounts[i][account_cash] >= amount)){
+        accounts[i][account_cash] -= amount;
+        balance_account = accounts[i][account_cash];
+        return balance_account;
+      }
     }
   }
-  return 0;
+  return -1;
 }
 int closeAccount(int account_num){
   for (int i = 0; i < Num_Of_Accounts; i++) {
@@ -69,7 +73,7 @@ int closeAccount(int account_num){
   }
   return 0;
 }
-int addInterest(int interest_rate){
+void addInterest(int interest_rate){
   float sum = 0;
   for(int i = 0; i < Num_Of_Accounts; i++){
     if(accounts[i][account_number] != 0){
@@ -78,7 +82,6 @@ int addInterest(int interest_rate){
     }
     sum = 0;
   }
-  return 0;
 }
 void print_account(){
   for(int i = 0; i < Num_Of_Accounts; i++){
@@ -87,11 +90,10 @@ void print_account(){
     }
   }
 }
-int closeAll(){
+void closeAll(){
   for (int i = 0; i < Num_Of_Accounts; i++) {
     for (int j = 0; j < 1; j++) {
       accounts[i][j] = 0;
     }
   }
-  return 0;
 }

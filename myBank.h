@@ -9,8 +9,8 @@ float checkBalance(int account_num);
 float depositCash(int account_num, float amount);
 float withdrawCash(int account_num, float amount);
 int closeAccount(int account_num);
-int addInterest(int interest_rate);
+void addInterest(int interest_rate);
 void print_account();
-int closeAll();
+void closeAll();
 
 #endif

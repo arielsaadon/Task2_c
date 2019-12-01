@@ -4,8 +4,6 @@ CFLAGS = -Wall -c
 DEPS = myBank.h
 OBJ = myBank.o
 
-.PHONY : all clean mains mybank
-
 all : mybank mains
 
 mybank : $(OBJ)
@@ -19,6 +17,8 @@ main.o : main.c $(DEPS)
 
 myBank.o : myBank.c $(DEPS)
 	$(CC) $(CFLAGS) myBank.c
+
+.PHONY : all clean mybank
 
 clean :
 	rm -f *.o *.a mains
